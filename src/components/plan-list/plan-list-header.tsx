@@ -59,6 +59,21 @@ export const PlanListHeaderDefault: React.FC<{
         >
           &nbsp;ItemDesc
         </div>
+        <div
+          className={styles.ganttTable_HeaderSeparator}
+          style={{
+            height: headerHeight * 0.5,
+            marginTop: headerHeight * 0.25,
+          }}
+        />
+        <div
+          className={styles.ganttTable_HeaderItem}
+          style={{
+            minWidth: "55px",
+          }}
+        >
+          &nbsp;OT
+        </div>
       </div>
     </div>
   );

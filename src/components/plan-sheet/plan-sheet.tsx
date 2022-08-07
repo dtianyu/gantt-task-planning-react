@@ -12,7 +12,7 @@ import { CalendarProps } from "../calendar/calendar";
 import { PlanGanttContentProps } from "./plan-gantt-content";
 import { PlanListHeaderDefault } from "../plan-list/plan-list-header";
 import { PlanListTableDefault } from "../plan-list/plan-list-table";
-import { StandardTooltipContent, Tooltip } from "../other/tooltip";
+import { ProductionPlanTooltipContent, Tooltip } from "../other/tooltip";
 import { VerticalScroll } from "../other/vertical-scroll";
 import { PlanListProps, PlanList } from "../plan-list/plan-list";
 import { PlanGantt } from "./plan-gantt";
@@ -54,7 +54,7 @@ export const PlanSheet: React.FunctionComponent<GanttProps> = ({
   arrowIndent = 20,
   todayColor = "rgba(252, 248, 227, 0.5)",
   viewDate,
-  TooltipContent = StandardTooltipContent,
+  TooltipContent = ProductionPlanTooltipContent,
   TaskListHeader = PlanListHeaderDefault,
   TaskListTable = PlanListTableDefault,
   onDateChange,

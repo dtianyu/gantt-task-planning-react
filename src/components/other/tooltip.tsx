@@ -23,6 +23,7 @@ export type TooltipProps = {
     fontFamily: string;
   }>;
 };
+
 export const Tooltip: React.FC<TooltipProps> = ({
   task,
   rowHeight,
@@ -129,12 +130,51 @@ export const StandardTooltipContent: React.FC<{
       }-${task.start.getDate()} ~ ${task.end.getFullYear()}-${
         task.end.getMonth() + 1
       }-${task.end.getDate()}`}</b>
+      {task.end.getTime() - task.start.getTime() !== 0 && (
+        <p className={styles.tooltipDefaultContainerParagraph}>{`Duration: ${~~(
+          (task.end.getTime() - task.start.getTime()) /
+          (1000 * 60 * 24)
+        )} 天`}</p>
+      )}
+      <p className={styles.tooltipDefaultContainerParagraph}>
+        {!!task.progress && `Progress: ${task.progress} %`}
+      </p>
+    </div>
+  );
+};
+
+export const ProductionPlanTooltipContent: React.FC<{
+  task: Task;
+  fontSize: string;
+  fontFamily: string;
+}> = ({ task, fontSize, fontFamily }) => {
+  const style = {
+    fontSize,
+    fontFamily,
+  };
+  return (
+    <div className={styles.tooltipDefaultContainer} style={style}>
+      <b style={{ fontSize: fontSize + 6 }}>{`${
+        task.name
+      }: ${task.start.getFullYear()}-${
+        task.start.getMonth() + 1
+      }-${task.start.getDate()}T${task.start.getHours()}:${task.start.getMinutes()} ~ ${task.end.getFullYear()}-${
+        task.end.getMonth() + 1
+      }-${task.end.getDate()}T${task.end.getHours()}:${task.end.getMinutes()}`}</b>
       <div>
         <b style={{ fontSize: fontSize + 6 }}>
           {`计划:${task.productionPlan?.planQuantity || null} ~ 工令:${
             task.productionPlan?.orderQuantity || null
           }`}
         </b>
+        <p>
+          {task.productionPlan?.productionOrder &&
+            task.productionPlan.productionOrder.map(order => (
+              <div key={order.formId}>
+                <b>{`${order.formId}:${order.quantity}`}</b>
+              </div>
+            ))}
+        </p>
       </div>
       {task.end.getTime() - task.start.getTime() !== 0 && (
         <p className={styles.tooltipDefaultContainerParagraph}>{`Duration: ${~~(

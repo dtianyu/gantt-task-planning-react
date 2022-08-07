@@ -29,14 +29,31 @@ export interface Task {
   dependencies?: string[];
   hideChildren?: boolean;
   displayOrder?: number;
-  productionPlan?: {
-    itemno: string;
-    itemDesc: string;
-    itemSpec?: string;
-    planQuantity: number;
-    orderQuantity?: number;
-    finishedQuantity?: number;
-  };
+  productionPlan?: ProductionPlan;
+}
+
+export interface ProductionPlan {
+  itemno: string;
+  itemDesc: string;
+  itemSpec?: string;
+  operationTime?: number;
+  planQuantity: number;
+  orderQuantity?: number;
+  finishedQuantity?: number;
+  uid?: string;
+  productionOrder?: ProductionOrder[];
+}
+
+export interface ProductionOrder {
+  formId?: string;
+  formDate?: Date;
+  itemno: string;
+  itemDesc: string;
+  itemSpec?: string;
+  quantity: number;
+  finishedQuantity: number;
+  uid?: string;
+  status: string;
 }
 
 export interface EventOption {

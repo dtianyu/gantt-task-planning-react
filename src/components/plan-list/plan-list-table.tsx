@@ -82,6 +82,15 @@ export const PlanListTableDefault: React.FC<{
             >
               {t.productionPlan?.itemDesc}
             </div>
+            <div
+              className={styles.taskListCell}
+              style={{
+                minWidth: "55px",
+                maxWidth: rowWidth,
+              }}
+            >
+              {t.productionPlan?.operationTime}
+            </div>
           </div>
         );
       })}
